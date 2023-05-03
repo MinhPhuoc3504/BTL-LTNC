@@ -3,7 +3,7 @@
 	<iostream>
 	<SDL.h>
 
-1679942564 source:c:\users\admin\downloads\test\testsdl\debug\main.cpp
+1683046808 source:c:\users\admin\downloads\test\testsdl\debug\main.cpp
 	"CommonFun.h"
 	"BaseObject.h"
 	"game_map.h"
@@ -19,7 +19,8 @@
 1679374587 c:\users\admin\downloads\test\testsdl\debug\baseobject.h
 	"CommonFun.h"
 
-1680062433 c:\users\admin\downloads\test\testsdl\debug\commonfun.h
+1683132711 c:\users\admin\downloads\test\testsdl\debug\commonfun.h
+	"define.h"
 	<windows.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -29,9 +30,10 @@
 	<bits/stdc++.h>
 	<vector>
 
-1679374623 source:c:\users\admin\downloads\test\testsdl\debug\commonfun.cpp
+1682696793 source:c:\users\admin\downloads\test\testsdl\debug\commonfun.cpp
 	"CommonFun.h"
-	"define.h"
+	"Text.h"
+	"BaseObject.h"
 
 1676272273 source:c:\users\admin\downloads\test\testsdl\debug\test.cpp
 
@@ -52,17 +54,17 @@
 1676128539 source:c:\users\admin\downloads\test\testsdl\commonfun.cpp
 	<CommonFun.h>
 
-1677936319 source:c:\users\admin\downloads\test\testsdl\debug\game_map.cpp
+1683030193 source:c:\users\admin\downloads\test\testsdl\debug\game_map.cpp
 	"game_map.h"
 
-1677433284 c:\users\admin\downloads\test\testsdl\debug\game_map.h
+1683128185 c:\users\admin\downloads\test\testsdl\debug\game_map.h
 	"CommonFun.h"
 	"BaseObject.h"
 
-1679941156 source:c:\users\admin\downloads\test\testsdl\debug\mainobject.cpp
+1682955406 source:c:\users\admin\downloads\test\testsdl\debug\mainobject.cpp
 	"MainObject.h"
 
-1679941177 c:\users\admin\downloads\test\testsdl\debug\mainobject.h
+1682765759 c:\users\admin\downloads\test\testsdl\debug\mainobject.h
 	<vector>
 	"CommonFun.h"
 	"BaseObject.h"
@@ -93,7 +95,7 @@
 1678641803 source:c:\users\admin\downloads\test\testsdl\debug\text.cpp
 	"Text.h"
 
-1678642909 c:\users\admin\downloads\test\testsdl\debug\text.h
+1682642667 c:\users\admin\downloads\test\testsdl\debug\text.h
 	"CommonFun.h"
 
 1679420227 source:c:\users\admin\downloads\test\testsdl\debug\geometric.cpp
@@ -102,13 +104,5 @@
 1679420336 c:\users\admin\downloads\test\testsdl\debug\geometric.h
 	"CommonFun.h"
 
-1679373835 c:\users\admin\downloads\test\testsdl\debug\define.h
-	<SDL.h>
-	<SDL_image.h>
-	<SDL_mixer.h>
-	<SDL_ttf.h>
-	<time.h>
-	"BaseObject.h"
-	<string>
-	<vector>
+1683132770 c:\users\admin\downloads\test\testsdl\debug\define.h
 

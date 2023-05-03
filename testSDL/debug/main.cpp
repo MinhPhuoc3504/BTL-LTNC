@@ -7,12 +7,13 @@
 #include"Text.h"
 #include "Geometric.h"
 
-#define BUG_SCRORE 20
+#define BUG_LIFE 20
 
 
 
 BaseObject g_background;
 TTF_Font* font_time = NULL;
+TTF_Font* font_menu = NULL;
 
 using namespace std;
 
@@ -49,7 +50,12 @@ bool InitData()
             success = false;
         }
         font_time = TTF_OpenFont("font/dlxfont_.ttf", FONT_SIZE);
+        font_menu = TTF_OpenFont("font/dlxfont_.ttf", FONT_MENU);
         if(font_time==NULL)
+        {
+            success = false;
+        }
+         if(font_menu==NULL)
         {
             success = false;
         }
@@ -195,13 +201,25 @@ std::vector<ThreatsObj*> ThreatsList()
     return list_threats;
 }
 
+
 int main(int argc, char** argv)
 {
-
-    int SCORE = BUG_SCRORE + 1;
+    bool quit= false;
+    while(!quit)
+    {
+    int max_score;
+    ifstream read("high_score.txt");
+    read >> max_score;
+    int LIFE = BUG_LIFE + 1;
     ImpTimer fps_timer;
     if(InitData()==false)
         return -1;
+    bool is_quit = false;
+    int ret_menu = SDLCommonFun::ShowMenu(g_screen, font_menu, "Play Game", "Exit", "image/menu.jpg");
+    if (ret_menu == 1)
+    {
+        is_quit = true;
+    }
     if(LoadBackgroung()==false)
         return -1;
     if(loadMedia()==false)
@@ -232,16 +250,15 @@ int main(int argc, char** argv)
 
     std::vector<ThreatsObj*> threats_list = ThreatsList();
     //time text
-    TextObj time_game;
+    TextObj high_score;
     TextObj score_game;
     TextObj lifes_game;
-    time_game.SetColor(TextObj::WHITE_TEXT);
+    high_score.SetColor(TextObj::WHITE_TEXT);
     score_game.SetColor(TextObj::WHITE_TEXT);
     lifes_game.SetColor(TextObj::WHITE_TEXT);
 
-    bool is_quit = false;
     //duy trì ctrinh
-    while(!is_quit)
+    while(!is_quit && !p_player.GetEndGame())
     {
         fps_timer.start();
         while(SDL_PollEvent(&g_event)!=0)
@@ -283,9 +300,7 @@ int main(int argc, char** argv)
 
         if(p_player.get_NUM_DIE()>3)
         {
-            close();
-            SDL_Quit();
-            return 0;
+            is_quit=true;
         }
 
         for(int i = 0; i< threats_list.size(); i++)
@@ -313,10 +328,9 @@ int main(int argc, char** argv)
                         bCoL1 = SDLCommonFun::CheckCollision(pthreat_bullet->GetRect(), rect_player);
                         if(bCoL1)
                         {
-                           //p_threat->RemoveBullet(jj);
-                           if(SCORE>0)
+                           if(LIFE>0)
                            {
-                               SCORE--;
+                               LIFE--;
                            }
 
                         }
@@ -330,20 +344,18 @@ int main(int argc, char** argv)
                         threatRect.w = p_threat->get_width_frame();
                         threatRect.h = p_threat->get_height_frame();
                 bool bCol2 = SDLCommonFun::CheckCollision(rect_player, threatRect);
-                if( bCol2|| SCORE == 0 )
+                if( bCol2|| LIFE == 0 )
                 {
                     Mix_PlayChannel(-1, gDie, 0);
                     if(p_player.get_NUM_DIE()<=3)
                     {
-                       // cout<<p_player.get_NUM_DIE()<<endl;
-                        SCORE++;
+                        LIFE++;
                         p_player.SetRect(0,0);
                         p_player.set_comeback_time(60);
                         SDL_Delay(500);
                         continue;
                     }
                     else
-                    //if(MessageBox(NULL, L"GAME OVER",L"Info", MB_OK | MB_ICONSTOP) == IDOK)
                     {
                         p_threat->Free();
                         close();
@@ -390,15 +402,17 @@ int main(int argc, char** argv)
         }
 
         //Show game time
-        std::string str_time = "Time: ";
         std::string str_score= "Score: ";
         std::string str_lifes = "Lifes: ";
+        std::string str_high_score="High Score: ";
 
         std::string score_val = std::to_string(p_player.GetScore());
         std::string lifes_val = std::to_string(3-p_player.get_NUM_DIE());
+        std::string max_score_val = std::to_string(max_score);
 
         str_score+=score_val;
         str_lifes+=lifes_val;
+        str_high_score += max_score_val;
 
         score_game.SetText(str_score);
         score_game.LoadFromRenderText(font_time, g_screen);
@@ -406,27 +420,11 @@ int main(int argc, char** argv)
 
         lifes_game.SetText(str_lifes);
         lifes_game.LoadFromRenderText(font_time, g_screen);
-        lifes_game.RenderText(g_screen, SCREEN_WIDTH/2,15);
+        lifes_game.RenderText(g_screen, SCREEN_WIDTH/2-50,15);
 
-        Uint32 time_val = SDL_GetTicks()/1000;
-        Uint32 val_time = 300-time_val;
-        if(val_time<0)
-        {
-            //if(MessageBox(NULL, L"GAME OVER",L"Info", MB_OK | MB_ICONSTOP) == IDOK)
-                {
-                    is_quit = true;
-                    break;
-                }
-        }
-        else
-        {
-            std::string str_val = std::to_string(val_time);
-            str_time+=str_val;
-
-            time_game.SetText(str_time);
-            time_game.LoadFromRenderText(font_time, g_screen);
-            time_game.RenderText(g_screen, SCREEN_WIDTH-200, 15);
-        }
+        high_score.SetText(str_high_score);
+        high_score.LoadFromRenderText(font_time, g_screen);
+        high_score.RenderText(g_screen, SCREEN_WIDTH-300,15);
 
         SDL_RenderPresent(g_screen);//ham xu ly
 
@@ -440,8 +438,8 @@ int main(int argc, char** argv)
                 SDL_Delay(delay_time); //fps cang nho thi delay cang lon => tang fps
 
         }
-    }
 
+    }
     for(int i = 0; i< threats_list.size();i++)
     {
         ThreatsObj* p_threat = threats_list.at(i);
@@ -453,6 +451,35 @@ int main(int argc, char** argv)
     }
     threats_list.clear();
 
+    int end_score = p_player.GetScore();
+    string last_score = "Score: "+ to_string(p_player.GetScore());
+
+    if(p_player.GetEndGame())
+    {
+        if(end_score > max_score)
+        {
+            max_score = end_score;
+            ofstream write("high_score.txt");
+            write << max_score;
+        }
+        int ret_highscore = SDLCommonFun::ShowMenu(g_screen, font_menu, last_score, "Exit", "image/victory.jpg");
+        if (ret_highscore == 1)
+        {
+            close();
+        }
+    }
+    else
+    {
+
+        int ret_over = SDLCommonFun::ShowMenu(g_screen, font_menu, "Play Again", "Exit", "image/gameover.jpg");
+        if (ret_over== 1)
+        {
+            close();
+            quit=true;
+        }
+        if(ret_over==0){ close(); continue;}
+    }
+    }
     close();
     return 0;
 }

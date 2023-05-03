@@ -51,6 +51,8 @@ class MainObject : public BaseObject
         int get_NUM_DIE() const {return NUM_DIE;}
         int SetScore(const int& score_threats){money_count+=score_threats;}
         int GetScore() const {return money_count;}
+        bool GetEndGame() const {return end_game;}
+        bool SetEndGame(const bool& eg){end_game=eg;}
 private:
 
     int money_count;
@@ -78,6 +80,8 @@ private:
     // xu ly roi
     int comeback_time;
     int NUM_DIE;
+
+    bool end_game;
 };
 
 #endif // MAIN_OBJECT_H_

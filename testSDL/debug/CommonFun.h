@@ -36,6 +36,8 @@ const int RENDER_DRAW_COLOR = 0xff;
 #define MAX_MAP_X 400
 #define MAX_MAP_Y 10
 
+#define GAME_TIME 300
+
 //The music that will be played
  static Mix_Music *gMusic = NULL;
 
@@ -68,6 +70,10 @@ typedef struct Map // cấu trúc dữ liệu Map
 
 namespace SDLCommonFun
 {
+    int ShowMenu(SDL_Renderer* g_screen, TTF_Font* font,
+    const std::string& menu1,
+    const std::string& menu2,
+    const std::string& img_name);
     bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2);
 }
 

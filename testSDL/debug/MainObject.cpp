@@ -22,6 +22,7 @@ MainObject::MainObject()
     comeback_time = 0;
     money_count = 0;
     NUM_DIE=0;
+    end_game=false;
 }
 
 MainObject::~MainObject()
@@ -140,6 +141,7 @@ void MainObject::Show(SDL_Renderer* des)
 void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen, Mix_Chunk* bullet_sound)
 {
     int left = 0;
+    bool pause=false;
     if(events.type == SDL_KEYDOWN)
     {
         switch(events.key.keysym.sym)
@@ -398,9 +400,9 @@ void MainObject::CheckToMap(Map& map_data, Mix_Chunk* sound)
     y2 = (y_pos_ +  height_min -1)/TILE_SIZE;
 
 
-    if(map_data.tile[y1][x2]==VAT_PHAM||map_data.tile[y1][x1]==VAT_PHAM||map_data.tile[y2][x1]==VAT_PHAM||map_data.tile[y2][x2]==VAT_PHAM)
+    if(map_data.tile[y1][x2]==14||map_data.tile[y1][x1]==14||map_data.tile[y2][x1]==14||map_data.tile[y2][x2]==14)
     {
-        check_eat=true;
+        end_game=true;
         Mix_PlayChannel(-1, sound, 0);
     }
 
@@ -408,17 +410,13 @@ void MainObject::CheckToMap(Map& map_data, Mix_Chunk* sound)
     {
         if(x_val_ > 0) //player di chuyen sang phai
         {
-
+            if(x1==400)
+            {
+                end_game=true;
+            }
             int val1 = map_data.tile[y1][x2];
             int val2 = map_data.tile[y2][x2];
 
-            if(val1 == VAT_PHAM ||val2 == VAT_PHAM)
-            {
-                map_data.tile[y1][x2] == 0;
-                map_data.tile[y2][x2] == 0;
-            }
-            else
-            {
                 if(val1 != BLANK_TILE || val2 != BLANK_TILE)
                 {
                     // va cham map
@@ -426,29 +424,18 @@ void MainObject::CheckToMap(Map& map_data, Mix_Chunk* sound)
                     x_pos_ -= width_frame_ +1;
                     x_val_ = 0;
                 }
-            }
         }
         else if(x_val_ <0)
             {
                 int val1 = map_data.tile[y1][x1];
                 int val2 = map_data.tile[y2][x1];
 
-                if(val1 == VAT_PHAM ||val2 == VAT_PHAM)
-                {
-                    map_data.tile[y1][x1] == 0;
-                    map_data.tile[y2][x1] == 0;
-
-                }
-                else
-                {
                     if(val1 != BLANK_TILE || val2 != BLANK_TILE)
                     {
                         x_pos_ = (x1+1)*TILE_SIZE;
                         x_val_ =0;
 
                     }
-                }
-
             }
 
     }

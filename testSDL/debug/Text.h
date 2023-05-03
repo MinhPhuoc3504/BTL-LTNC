@@ -4,6 +4,7 @@
 
 #include"CommonFun.h"
 #define FONT_SIZE 15
+#define FONT_MENU 35
 
 class TextObj
 {
