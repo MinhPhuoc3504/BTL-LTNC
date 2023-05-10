@@ -106,3 +106,84 @@
 
 1683132770 c:\users\admin\downloads\test\testsdl\debug\define.h
 
+1678024297 source:c:\users\admin\documents\github\btl-ltnc\testsdl\debug\bullet.cpp
+	"Bullet.h"
+
+1678024046 c:\users\admin\documents\github\btl-ltnc\testsdl\debug\bullet.h
+	"BaseObject.h"
+	"CommonFun.h"
+
+1679374587 c:\users\admin\documents\github\btl-ltnc\testsdl\debug\baseobject.h
+	"CommonFun.h"
+
+1683132812 c:\users\admin\documents\github\btl-ltnc\testsdl\debug\commonfun.h
+	<windows.h>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+	<string>
+	<bits/stdc++.h>
+	<vector>
+
+1682696793 source:c:\users\admin\documents\github\btl-ltnc\testsdl\debug\commonfun.cpp
+	"CommonFun.h"
+	"Text.h"
+	"BaseObject.h"
+
+1682642667 c:\users\admin\documents\github\btl-ltnc\testsdl\debug\text.h
+	"CommonFun.h"
+
+1683030193 source:c:\users\admin\documents\github\btl-ltnc\testsdl\debug\game_map.cpp
+	"game_map.h"
+
+1683128185 c:\users\admin\documents\github\btl-ltnc\testsdl\debug\game_map.h
+	"CommonFun.h"
+	"BaseObject.h"
+
+1679420227 source:c:\users\admin\documents\github\btl-ltnc\testsdl\debug\geometric.cpp
+	"Geometric.h"
+
+1679420336 c:\users\admin\documents\github\btl-ltnc\testsdl\debug\geometric.h
+	"CommonFun.h"
+
+1678641803 source:c:\users\admin\documents\github\btl-ltnc\testsdl\debug\text.cpp
+	"Text.h"
+
+1678560474 source:c:\users\admin\documents\github\btl-ltnc\testsdl\debug\threats.cpp
+	"Threats.h"
+
+1678368317 c:\users\admin\documents\github\btl-ltnc\testsdl\debug\threats.h
+	"CommonFun.h"
+	"BaseObject.h"
+	"Bullet.h"
+
+1677503036 source:c:\users\admin\documents\github\btl-ltnc\testsdl\debug\timer.cpp
+	"Timer.h"
+
+1677499185 c:\users\admin\documents\github\btl-ltnc\testsdl\debug\timer.h
+	"CommonFun.h"
+	"BaseObject.h"
+
+1683132222 source:c:\users\admin\documents\github\btl-ltnc\testsdl\debug\baseobject.cpp
+	"BaseObject.h"
+
+1683132153 source:c:\users\admin\documents\github\btl-ltnc\testsdl\debug\main.cpp
+	"CommonFun.h"
+	"BaseObject.h"
+	"game_map.h"
+	"MainObject.h"
+	"Timer.h"
+	"Threats.h"
+	"Text.h"
+	"Geometric.h"
+
+1682765759 c:\users\admin\documents\github\btl-ltnc\testsdl\debug\mainobject.h
+	<vector>
+	"CommonFun.h"
+	"BaseObject.h"
+	"Bullet.h"
+
+1683132306 source:c:\users\admin\documents\github\btl-ltnc\testsdl\debug\mainobject.cpp
+	"MainObject.h"
+
